@@ -2,9 +2,6 @@ from crewai import Agent, Task
 
 
 def build_tasks(researcher: Agent, analyst: Agent, writer: Agent) -> tuple[Task, Task, Task]:
-    """Builds the 3 chained tasks. Each task's `context` hands it the
-    previous task's finished output -- that's the entire hand-off
-    mechanism between agents, there's no shared memory beyond this."""
     research_task = Task(
         description="Research {topic} and list the most important, current facts.",
         expected_output="A bullet list of 5 facts about {topic}, each with why it matters.",

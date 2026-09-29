@@ -17,7 +17,5 @@ class CrewRunResponse(BaseModel):
 
 @router.post("/run", response_model=CrewRunResponse)
 def run(request: CrewRunRequest) -> CrewRunResponse:
-    """Thin on purpose: no crew or agent logic here, just calls the
-    service layer and returns what it gets back."""
     result = run_crew(request.topic)
     return CrewRunResponse(topic=request.topic, result=result)

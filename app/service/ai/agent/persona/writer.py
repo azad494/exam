@@ -2,8 +2,6 @@ from crewai import Agent, LLM
 
 
 def build_writer(llm: LLM) -> Agent:
-    """Builds the Writer agent. Receives its LLM from the caller
-    (the mother model) -- it never constructs one itself."""
     return Agent(
         role="Content Writer",
         goal="Turn the analyst's findings on {topic} into a clear, well-structured write-up",

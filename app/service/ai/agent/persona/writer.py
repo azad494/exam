@@ -1,14 +1,15 @@
-from crewai import Agent, LLM
+from crewai import LLM, Agent
 
 
 def build_writer(llm: LLM) -> Agent:
-    return Agent(
+    agent = Agent(
         role="Content Writer",
-        goal="Turn the analyst's findings on {topic} into a clear, well-structured write-up",
+        goal="Turn the analyst's insights about {topic} into a clear, engaging piece of writing",
         backstory=(
-            "You are a former journalist who favors plain language over jargon, and you always lead "
-            "with the point instead of burying it."
+            "You are a writer who turns analysis into something a general reader "
+            "actually wants to read, without inventing new facts of your own."
         ),
         llm=llm,
         verbose=True,
     )
+    return agent

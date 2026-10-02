@@ -1,14 +1,17 @@
-from crewai import Agent, LLM
+from crewai import LLM, Agent
 
 
 def build_researcher(llm: LLM) -> Agent:
-    return Agent(
-        role="Senior Research Analyst",
-        goal="Find accurate, current facts about {topic} and surface the most important ones",
+    """Gathers the facts Analyst and Writer build on, so nobody re-does this
+    job (and nobody pays for a second research pass on the same topic)."""
+    agent = Agent(
+        role="Researcher",
+        goal="Gather the most relevant, concrete facts about {topic}",
         backstory=(
-            "You are meticulous and always trace a claim back to a source before repeating it. "
-            "You favor recent, verifiable information over speculation."
+            "You are a meticulous researcher who collects concrete facts about "
+            "a topic from what you know, rather than offering opinions."
         ),
         llm=llm,
         verbose=True,
     )
+    return agent

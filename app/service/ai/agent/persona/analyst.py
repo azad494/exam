@@ -1,14 +1,18 @@
-from crewai import Agent, LLM
+from crewai import LLM, Agent
 
 
 def build_analyst(llm: LLM) -> Agent:
-    return Agent(
+    """Interprets what Researcher already found. Never searches the web
+    itself, so it never duplicates Researcher's job."""
+    agent = Agent(
         role="Insight Analyst",
-        goal="Turn the research on {topic} into clear findings and patterns a decision-maker can act on",
+        goal="Interpret the research notes about {topic} and extract the key insights",
         backstory=(
-            "You question assumptions, look for contradictions in the source material, and never "
-            "present a conclusion you can't trace back to evidence."
+            "You are an analyst who works only from notes handed to you. You never "
+            "go looking for new information yourself — you find the patterns and "
+            "the 'so what' in what the researcher already found."
         ),
         llm=llm,
         verbose=True,
     )
+    return agent

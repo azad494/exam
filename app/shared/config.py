@@ -16,7 +16,7 @@ class Config:
 
     def config(self):
         self.gemini_api_key = os.environ["GEMINI_API_KEY"]
-        self.model_name = os.getenv("LLM_MODEL", "gemini/gemini-2.5-flash")
+        self.model_name = os.getenv("LLM_MODEL", "gemini/gemini-3.8-flash")
         self.model_temperature = float(os.getenv("LLM_TEMPERATURE", "0.7"))
 
 
